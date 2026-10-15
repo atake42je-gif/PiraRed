@@ -1,1 +1,36 @@
 
+name: Generar APK de PiraRed
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'app/**'
+      - '.github/workflows/android.yml'
+      - '*.gradle'
+      - 'gradle.properties'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Preparar permisos
+        run: chmod +x gradlew || true
+
+      - name: Compilar APK
+        run: gradle assembleDebug
+
+      - name: Guardar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PiraRed-apk
+          path: app/build/outputs/apk/debug/*.apk
