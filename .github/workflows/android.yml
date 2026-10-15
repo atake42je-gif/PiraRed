@@ -1,14 +1,10 @@
-
 name: Generar APK de PiraRed
 
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'app/**'
-      - '.github/workflows/android.yml'
-      - '*.gradle'
-      - 'gradle.properties'
+    branches:
+      - main
 
 jobs:
   build:
@@ -23,8 +19,24 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Preparar permisos
-        run: chmod +x gradlew || true
+      - name: Recuperar proyecto Android del ZIP
+        shell: bash
+        run: |
+          set -e
+          ZIP=$(find . -maxdepth 1 -type f -iname '*.zip' | head -n 1)
+          if [ -z "$ZIP" ]; then
+            echo "No se encontro el ZIP del proyecto Android."
+            exit 1
+          fi
+          mkdir -p /tmp/pirared
+          unzip -o "$ZIP" -d /tmp/pirared
+          ROOT=$(find /tmp/pirared -type f -name settings.gradle -printf '%h\n' | head -n 1)
+          if [ -z "$ROOT" ] || [ ! -d "$ROOT/app" ]; then
+            echo "El ZIP no contiene la carpeta app esperada."
+            exit 1
+          fi
+          cp -a "$ROOT/." .
+          test -d app
 
       - name: Compilar APK
         run: gradle assembleDebug
