@@ -1,27 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#061a3a"><title>PiraRed</title><link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PiraRed</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f5fa;color:#172033}
+header{background:#111b30;color:white;padding:25px 18px;border-radius:0 0 24px 24px}
+.logo{background:#7555ff;border-radius:12px;padding:12px;display:inline-block;font-weight:bold}
+h1{display:inline-block;margin-left:10px}
+h2{font-size:19px}
+p{line-height:1.5}
+main{padding:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:white;border-radius:16px;padding:18px 12px;text-align:center;box-shadow:0 2px 10px #0000000b}
+.icon{font-size:28px}
+a{color:#6245e8;text-decoration:none;font-weight:bold}
+.ad{background:#e9e4ff;border-radius:15px;padding:14px;margin-top:16px;font-size:14px}
+.after{background:#182139;color:white;border-radius:16px;padding:17px;margin-top:16px}
+nav{position:fixed;bottom:0;background:white;width:100%;display:flex;justify-content:space-around;padding:14px 3px;border-top:1px solid #ddd}
+nav span{font-size:12px;text-align:center}
+footer{height:65px}
+</style>
 </head>
 <body>
-<div class="app">
-  <header class="top"><div class="brand"><span class="pin">P</span><span>Pira<b>Red</b></span></div><button class="glass small" id="profileBtn">Mi cuenta</button></header>
-  <main id="screen"></main>
-  <nav class="bottom">
-    <button data-page="home" class="nav active">⌂<small>Inicio</small></button>
-    <button data-page="market" class="nav">▦<small>Compra/Venta</small></button>
-    <button data-page="jobs" class="nav">✦<small>Trabajos</small></button>
-    <button data-page="profile" class="nav">♙<small>Perfil</small></button>
-  </nav>
+<header>
+<div class="logo">PR</div><h1>PiraRed</h1>
+<p>Todo Pirané, más cerca.</p>
+<p>Comprá, vendé, encontrá trabajo y conectá con tu comunidad.</p>
+</header>
+<main>
+<h2>Explorá PiraRed</h2>
+<div class="grid">
+<div class="card"><div class="icon">🛍️</div><p><a href="#ventas">Compra y venta</a></p></div>
+<div class="card"><div class="icon">🧰</div><p><a href="#trabajos">Trabajos y changas</a></p></div>
+<div class="card"><div class="icon">🔧</div><p><a href="#servicios">Servicios locales</a></p></div>
+<div class="card"><div class="icon">👥</div><p><a href="#comunidad">Comunidad</a></p></div>
 </div>
-<dialog id="accountDialog">
-<form method="dialog" class="dialog glass"><button class="close" value="cancel">✕</button><h2 id="accountTitle">Mi cuenta</h2>
-<label>Nombre y apellido<input id="nameInput" placeholder="Tu nombre"></label>
-<label>Correo o teléfono<input id="contactInput" placeholder="correo o celular"></label>
-<label>Contraseña<input id="passwordInput" type="password" placeholder="Contraseña (demo)"></label>
-<p class="muted">Prototipo local: todavía no crea cuentas reales ni guarda datos en un servidor.</p>
-<button class="primary" id="saveAccount" value="save">Guardar perfil</button></form>
-</dialog>
-<script src="app.js"></script>
-</body></html>
+<div class="ad"><strong>📣 Publicidad local</strong><br>Un espacio discreto para que los comercios de Pirané promocionen sus negocios.</div>
+<h2 id="ventas">Publicaciones recientes</h2>
+<div class="grid">
+<div class="card"><div class="icon">📱</div><strong>Celulares</strong><p>Compra y venta local</p></div>
+<div class="card"><div class="icon">🪑</div><strong>Muebles</strong><p>Productos para el hogar</p></div>
+</div>
+<div class="after"><div class="icon">🌙</div><h2>After PiraRed</h2><p>Organizá salidas y encuentros con tu comunidad.</p></div>
+<h2>Tu cuenta</h2>
+<div class="card"><div class="icon">🛡️</div><strong>Usuarios verificados</strong><p>El registro seguro se agregará en una etapa posterior.</p></div>
+<p style="font-size:12px;color:#687386">Prototipo inicial. Las cuentas, publicaciones reales y los pagos todavía deben conectarse. La comisión prevista es del 0,50 % por operación y necesita un proveedor de pagos.</p>
+<footer></footer>
+</main>
+<nav><span>⌂<br>Inicio</span><span>⌕<br>Buscar</span><span>＋<br>Publicar</span><span>☾<br>After</span><span>♙<br>Perfil</span></nav>
+</body>
+</html>
